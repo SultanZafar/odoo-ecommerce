@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  # Database service
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: odoo_fresh
+    volumes:
+      - odoo_db:/var/lib/postgresql/data
+
+  # Odoo service
+  web:
+    build: .
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
+    volumes:
+      - .:/odoo
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=1234
+
+volumes:
+  odoo_db:

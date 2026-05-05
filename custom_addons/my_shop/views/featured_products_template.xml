@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="featured_products_page" name="Featured Products">
+        <t t-call="website.layout">
+            <div class="container mt-4">
+                <h1>⭐ Featured Products</h1>
+                <div class="row">
+                    <t t-foreach="products" t-as="product">
+                        <div class="col-md-3 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <t t-esc="product.name"/>
+                                    </h5>
+                                    <p class="card-text">
+                                        $ <t t-esc="product.list_price"/>
+                                    </p>
+                                    <a t-attf-href="/shop/#{product.id}"
+                                       class="btn btn-primary">
+                                        View Product
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
